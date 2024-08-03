@@ -1,0 +1,13 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/myapp-repo/capsapp', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/myapp-repo/capsapp']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'caps-app', '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/myapp-repo/capsapp', '--platform', 'managed', '--region', 'us-central1']
+
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/myapp-repo/capsapp'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
