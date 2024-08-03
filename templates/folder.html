@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> CSV File Content: {{ folder_name }}</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #3498db, #2ecc71); /* Vibrant blue to green gradient */
+      color: white;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    li {
+      background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease; /* Smooth transition on hover */
+    }
+
+    li:hover {
+      transform: translateY(-3px); /* Slightly lift on hover */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s ease; /* Smooth color transition on hover */
+    }
+
+    a:hover {
+      color: #f39c12; /* Vibrant orange on hover */
+    }
+  </style>
+</head>
+<body>
+  <h2> CSV File Content: {{ folder_name }}</h2>
+  <ul>
+    {% for blob in blobs %}
+      <li><a href="/download/{{ blob.name }}">{{ blob.name }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
